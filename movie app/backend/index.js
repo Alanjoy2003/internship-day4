@@ -33,6 +33,27 @@ app.post('/new-movie',async(req,res)=>{
 })
 
 
+//API endpoint for deleting the movie document
+app.delete('/movieremoval/:id',async(req,res)=>{
+try{
+await moviedata.findByIdAndDelete(req.params.id);
+res.send('Deleted successfully');
+}
+catch(error){
+    console.log(error);
+}
+})
+//API endpoint for updating movie document
+app.put('/movie-updation/:id',async(req,res)=>{
+    try{
+await moviedata.findByIdAndDelete(req.params.id,req.body)
+res.send("Update successfully")
+    }
+    catch(error){
+        console.log(error)
+    }
+})
+
 //checking whether the srever is live or not
 app.listen(PORT,()=>{
     console.log("server is running on Port Number:4000");
